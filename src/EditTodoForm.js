@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import useInputState from './hooks/useInputState';
+import { TodosContext } from './contexts/todos.context';
 
-function EditTodoForm({todo, editTodo, toggleEditForm}) {
+
+function EditTodoForm({todo, toggleEditForm}) {
   const [value, handleChange, reset] = useInputState(todo.task);
+  const { editTodo } = useContext(TodosContext);
 
   function handleKeyDown(e){
     if (e.keyCode === 27) {

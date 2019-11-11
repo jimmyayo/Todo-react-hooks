@@ -10,10 +10,7 @@ import UseTodoState from "./hooks/UseTodoState";
 import { TodosProvider } from "./contexts/todos.context";
 
 const TodoApp = function () {
-  const initialTodos = [];
-
-  const { todos, addTodo, deleteTodo, toggleTodo, editTodo } = UseTodoState(initialTodos);
-
+  
   return (
     <Paper
       elevation={0}
@@ -34,13 +31,8 @@ const TodoApp = function () {
       <Grid container justify="center" style={{ marginTop: "1rem" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodosProvider>
-            <TodoForm
-              addTodo={addTodo} />
-            <TodoList
-              todos={todos}
-              removeTodo={deleteTodo}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo} />
+            <TodoForm />
+            <TodoList />
           </TodosProvider>
         </Grid>
 
