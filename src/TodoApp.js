@@ -7,11 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import UseTodoState from "./hooks/UseTodoState";
+import { TodosProvider } from "./contexts/todos.context";
 
 const TodoApp = function () {
   const initialTodos = [];
 
-  const {todos, addTodo, deleteTodo, toggleTodo, editTodo} = UseTodoState(initialTodos);
+  const { todos, addTodo, deleteTodo, toggleTodo, editTodo } = UseTodoState(initialTodos);
 
   return (
     <Paper
@@ -30,17 +31,19 @@ const TodoApp = function () {
         </ToolBar>
       </AppBar>
 
-      <Grid container justify="center" style={{ marginTop: "1rem"}}>
+      <Grid container justify="center" style={{ marginTop: "1rem" }}>
         <Grid item xs={11} md={8} lg={4}>
-        <TodoForm 
-          addTodo={addTodo} />
-        <TodoList 
-          todos={todos} 
-          removeTodo={deleteTodo} 
-          toggleTodo={toggleTodo} 
-          editTodo={editTodo} />
+          <TodosProvider>
+            <TodoForm
+              addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              removeTodo={deleteTodo}
+              toggleTodo={toggleTodo}
+              editTodo={editTodo} />
+          </TodosProvider>
         </Grid>
-        
+
       </Grid>
 
 
