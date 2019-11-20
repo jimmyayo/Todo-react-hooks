@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import useInputState from './hooks/useInputState';
-import { TodosContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 
 function EditTodoForm({todo, toggleEditForm}) {
   const [value, handleChange, reset] = useInputState(todo.task);
-  const { editTodo } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
 
   function handleKeyDown(e){
     if (e.keyCode === 27) {
@@ -19,7 +19,7 @@ function EditTodoForm({todo, toggleEditForm}) {
   return (
     <form onSubmit={e => {
         e.preventDefault();
-        editTodo(todo.id, value);
+        dispatch( { type: "EDIT", id: todo.id, newTask: value })
         reset();
         toggleEditForm();
         }}
